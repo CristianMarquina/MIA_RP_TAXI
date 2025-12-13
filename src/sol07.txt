@@ -1,0 +1,73 @@
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Answer: 1 (Time: 812.602s)
+ State 0:
+ State 1:
+  move(1,r)
+ State 2:
+  pick(1)
+ State 3:
+  move(1,r)
+ State 4:
+  move(1,d)
+ State 5:
+  move(1,r)
+ State 6:
+  move(1,r)
+ State 7:
+  move(1,r)
+ State 8:
+  move(1,r)
+ State 9:
+  move(1,r)
+ State 10:
+  drop(1)
+ State 11:
+  move(1,l)
+ State 12:
+  move(1,u)
+ State 13:
+  move(1,u)
+ State 14:
+  move(1,l)
+ State 15:
+  move(1,l)
+ State 16:
+  move(1,l)
+ State 17:
+  move(1,l)
+ State 18:
+  move(1,l)
+ State 19:
+  pick(1)
+ State 20:
+  move(1,r)
+ State 21:
+  move(1,r)
+ State 22:
+  move(1,r)
+ State 23:
+  move(1,r)
+ State 24:
+  move(1,r)
+ State 25:
+  move(1,r)
+ State 26:
+  drop(1)
+SATISFIABLE
+
+Models       : 1+
+Calls        : 27
+Time         : 812.604s (Solving: 812.37s 1st Model: 64.02s Unsat: 748.34s)
+CPU Time     : 799.141s
