@@ -1,0 +1,81 @@
+telingo version 2.1.2
+Reading from taxi5.lp ...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Answer: 1 (Time: 24.088s)
+ State 0:
+ State 1:
+  move(1,r) move(2,d) move(3,l)
+ State 2:
+  move(1,r) move(2,l) move(3,l)
+ State 3:
+  pick(1) pick(3)
+  move(2,l)
+ State 4:
+  move(1,r) move(2,d) move(3,r)
+ State 5:
+  move(1,d) move(2,l) move(3,r)
+ State 6:
+  pick(2)
+  move(1,r) move(3,r)
+ State 7:
+  move(1,r) move(2,r) move(3,r)
+ State 8:
+  move(1,u) move(2,r) move(3,r)
+ State 9:
+  move(1,u) move(2,r) move(3,r)
+ State 10:
+  move(1,u) move(2,u) move(3,r)
+ State 11:
+  pick(1)
+  move(2,u) move(3,d)
+ State 12:
+  pick(3)
+  move(1,r) move(2,u)
+ State 13:
+  move(1,r) move(2,u) move(3,d)
+ State 14:
+  move(1,d) move(2,r) move(3,d)
+ State 15:
+  move(1,d) move(2,r) move(3,d)
+ State 16:
+  move(1,d) move(2,d) move(3,r)
+ State 17:
+  move(1,d) move(2,d) move(3,r)
+ State 18:
+  move(1,r) move(2,d) move(3,u)
+ State 19:
+  move(1,r) move(2,d) move(3,u)
+ State 20:
+  move(1,u) move(2,r) move(3,u)
+ State 21:
+  move(1,u) move(2,r) move(3,u)
+ State 22:
+  drop(1) drop(2) drop(3)
+SATISFIABLE
+
+Models       : 1+
+Calls        : 23
+Time         : 24.095s (Solving: 23.94s 1st Model: 14.32s Unsat: 9.60s)
+CPU Time     : 23.938s

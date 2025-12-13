@@ -1,0 +1,13 @@
+rows(1).
+cols(4).
+cell(0,0).
+cell(0,1).
+cell(0,2).
+cell(0,3).
+station(0,3).
+taxi(1).
+taxi_pos(1,0,1).
+taxi(2).
+taxi_pos(2,0,2).
+passenger(a).
+passenger_pos(a,0,0).

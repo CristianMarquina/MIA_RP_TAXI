@@ -1,0 +1,34 @@
+telingo version 2.1.2
+Reading from taxi5.lp ...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Answer: 1 (Time: 0.022s)
+ State 0:
+ State 1:
+  wait(2)
+  move(1,l)
+ State 2:
+  pick(1)
+  move(2,r)
+ State 3:
+  move(1,r) move(2,u)
+ State 4:
+  wait(2)
+  move(1,r)
+ State 5:
+  wait(2)
+  move(1,r)
+ State 6:
+  drop(1)
+  wait(2)
+SATISFIABLE
+
+Models       : 1+
+Calls        : 7
+Time         : 0.023s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.031s

@@ -1,0 +1,54 @@
+telingo version 2.1.2
+Reading from taxi5.lp ...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Solving...
+Answer: 1 (Time: 31.202s)
+ State 0:
+ State 1:
+  move(1,r) move(2,r) move(3,r)
+ State 2:
+  pick(1) pick(2) pick(3)
+ State 3:
+  move(1,r) move(2,r) move(3,r)
+ State 4:
+  drop(3)
+  move(1,r) move(2,r)
+ State 5:
+  drop(2)
+  move(1,r) move(3,d)
+ State 6:
+  drop(1)
+  move(2,l) move(3,l)
+ State 7:
+  pick(3)
+  move(1,d) move(2,d)
+ State 8:
+  pick(2)
+  wait(1)
+  move(3,r)
+ State 9:
+  move(1,l) move(2,d) move(3,r)
+ State 10:
+  pick(1)
+  move(2,r) move(3,r)
+ State 11:
+  move(1,r) move(2,r) move(3,u)
+ State 12:
+  drop(1) drop(2) drop(3)
+SATISFIABLE
+
+Models       : 1+
+Calls        : 13
+Time         : 31.212s (Solving: 31.14s 1st Model: 22.64s Unsat: 8.49s)
+CPU Time     : 30.875s
