@@ -4,23 +4,76 @@
 
 This project solves the **Taxi Routing Problem** using **Telingo**, a temporal logic programming system built on top of ASP (Answer Set Programming). The goal is to plan the movements of multiple taxis to pick up and deliver passengers to designated stations, respecting constraints such as avoiding buildings, preventing taxi collisions, and managing passenger-taxi interactions.
 
+## Program Description: taxi5_CristianMarquina_JoseBordon.lp
+
+The `taxi5_CristianMarquina_JoseBordon.lp` file contains the core temporal logic program that encodes the taxi routing problem:
+
+### Key Components:
+
+1. **Direction Definitions**
+   ```prolog
+   direction(-1, 0).  % up
+   direction(1, 0).   % down
+   direction(0, -1).  % left
+   direction(0, 1).   % right
+   ```
+
+2. **Initial State Program (#program initial)**
+   - Defines the starting positions of taxis and passengers
+   - Marks all taxis as free (not carrying passengers)
+
+3. **Dynamic Program (#program dynamic)**
+   - **Action Generation:** Each taxi must perform exactly one action per time step
+   - **Movement:** Taxis can move in valid directions (not through buildings)
+   - **Pickup:** A taxi can pick up a passenger if they're at the same location and the taxi is free
+   - **Dropoff:** A taxi can drop off a passenger at any location (ideally at stations)
+   - **Inertia rules:** States persist unless changed by actions
+
+4. **Constraints**
+   - No taxi collisions (two taxis cannot be in the same cell)
+   - No passenger collisions (two passengers cannot be in the same cell)
+   - No driving through buildings
+   - Passengers cannot share a cell with an occupied taxi
+   - Taxis must stay within the grid boundaries
+
+5. **Goal**
+   - All passengers must be delivered to stations
+   - A passenger is "delivered" when at a station cell and not inside a taxi
+
+## Important Modification to drawtaxi.py
+
+The visualization script was modified with one critical fix:
+
+**Added line (116):**
+```python
+if len(words)==0: continue
+```
+
+**Why it's needed:**
+- The solution file from Telingo may contain empty lines between states
+- Without this check, the parser would crash when trying to process empty lines
+- This line skips empty lines, allowing smooth parsing of the solution file
+
+
+
 ## Project Structure
 
 ```
 MIA_RP_TAXI/
-├── README.md                    # This file
-├── extaxi/                      # Domain files and solutions
-│   ├── dom01.txt - dom10.txt   # Input domain files (ASCII grid format)
-│   ├── encode.py               # Encoder script
-│   ├── sol01.txt - sol10.txt   # Reference solutions
+├── CristianMarquina-JoseCarlosBordon_Report.pdf              #Report 
+├── README.md                                                 # This file
+├── extaxi/                                                   # Domain files and solutions
+│   ├── dom01.txt - dom10.txt                                 # Input domain files 
+│   ├── encode.py                                              # Encoder script
+│   ├── sol01.txt - sol10.txt                                  # Reference solutions
 │   └── README.md
-├── src/                         # Source code for solving
-│   ├── taxi5.lp                # Main Telingo program (SOLUTION)
+├── src/                                                    # Source code for solving
+│   ├── taxi5_CristianMarquina_JoseBordon.lp                # Main Telingo program (SOLUTION)
 │   ├── facts/
-│   │   └── domain.lp           # Generated facts from domain file
-│   ├── drawtaxi.py             # Visualization script
-│   ├── picstaxi/               # Image assets for visualization
-│   └── encode.py               # Encoder script (copy)
+│   │   └── domain.lp                                       # Generated facts from domain file
+│   ├── drawtaxi_CristianMarquina_JoseBordon.py             # Visualization script
+│   ├── picstaxi/                                           # Image assets for visualization
+│   └── encode_CristianMarquina_JoseBordon.py               # Encoder script (copy)
 ```
 
 ## How to Use - Step by Step
@@ -32,7 +85,7 @@ Convert an ASCII domain file into logic programming facts.
 **Command:**
 ```bash
 cd extaxi
-python encode.py dom01.txt dom01.lp
+python encode_CristianMarquina_JoseBordon.py dom01.txt dom01.lp
 ```
 
 **What it does:**
@@ -82,11 +135,11 @@ cp dom01.lp ../src/facts/domain.lp
 **Command (in src/ directory):**
 ```bash
 cd ../src
-telingo taxi5.lp facts/domain.lp --imax=20 > sol01.txt
+telingo taxi5_CristianMarquina_JoseBordon.lp facts/domain.lp  > sol01.txt
 ```
 
 **Parameters explained:**
-- `taxi5.lp` - Main program (temporal logic encoding of taxi routing)
+- `taxi5_CristianMarquina_JoseBordon.lp` - Main program (temporal logic encoding of taxi routing)
 - `facts/domain.lp` - Generated facts from Step 1
 - `--imax=20` - Maximum search depth (20 time steps)
 - `> sol01.txt` - Redirect output to solution file
@@ -123,13 +176,12 @@ pip install pygame
 
 **Command:**
 ```bash
-python drawtaxi.py dom01.txt sol01.txt
+python drawtax_CristianMarquina_JoseBordon.py dom01.txt sol01.txt
 ```
 
 **Parameters:**
 - `dom01.txt` - Original domain file (ASCII grid)
 - `sol01.txt` - Solution file from Telingo
-- Optional: `[delayMs]` - Delay in milliseconds between frames (default: 200)
 
 **Example with custom delay:**
 ```bash
@@ -144,124 +196,3 @@ python drawtaxi.py dom01.txt sol01.txt 500
 - Animates the solution step by step
 - Each state shows one time step of the plan
 
-## Program Description: taxi5.lp
-
-The `taxi5.lp` file contains the core temporal logic program that encodes the taxi routing problem:
-
-### Key Components:
-
-1. **Direction Definitions**
-   ```prolog
-   direction(-1, 0).  % up
-   direction(1, 0).   % down
-   direction(0, -1).  % left
-   direction(0, 1).   % right
-   ```
-
-2. **Initial State Program (#program initial)**
-   - Defines the starting positions of taxis and passengers
-   - Marks all taxis as free (not carrying passengers)
-
-3. **Dynamic Program (#program dynamic)**
-   - **Action Generation:** Each taxi must perform exactly one action per time step
-   - **Movement:** Taxis can move in valid directions (not through buildings)
-   - **Pickup:** A taxi can pick up a passenger if they're at the same location and the taxi is free
-   - **Dropoff:** A taxi can drop off a passenger at any location (ideally at stations)
-   - **Inertia rules:** States persist unless changed by actions
-
-4. **Constraints**
-   - No taxi collisions (two taxis cannot be in the same cell)
-   - No passenger collisions (two passengers cannot be in the same cell)
-   - No driving through buildings
-   - Passengers cannot share a cell with an occupied taxi
-   - Taxis must stay within the grid boundaries
-
-5. **Goal**
-   - All passengers must be delivered to stations
-   - A passenger is "delivered" when at a station cell and not inside a taxi
-
-## Important Modification to drawtaxi.py
-
-The visualization script was modified with one critical fix:
-
-**Added line (116):**
-```python
-if len(words)==0: continue
-```
-
-**Why it's needed:**
-- The solution file from Telingo may contain empty lines between states
-- Without this check, the parser would crash when trying to process empty lines
-- This line skips empty lines, allowing smooth parsing of the solution file
-
-## Complete Workflow Example
-
-```bash
-# 1. Generate facts from domain
-cd extaxi
-python encode.py dom01.txt dom01.lp
-
-# 2. Copy facts to source directory
-cp dom01.lp ../src/facts/domain.lp
-
-# 3. Solve using Telingo
-cd ../src
-telingo taxi5.lp facts/domain.lp --imax=20 > sol01.txt
-
-# 4. Visualize the solution
-python drawtaxi.py dom01.txt sol01.txt
-
-# 5. (Optional) Custom visualization with slower speed
-python drawtaxi.py dom01.txt sol01.txt 500
-```
-
-## System Requirements
-
-- **Python 3.7+**
-- **Telingo 2.1.2+** (installed in a conda environment)
-- **Pygame** (for visualization)
-
-## Installation
-
-```bash
-# Install conda environment with Telingo
-conda env create -f environment.yml
-
-# Activate environment
-conda activate potassco
-
-# Install pygame
-pip install pygame
-
-# Download picstaxi.zip and extract
-unzip picstaxi.zip -d src/picstaxi/
-```
-
-## Understanding the Solution Output
-
-Each `State X` in the solution represents one time step:
-- Time 0: Initial state (before any actions)
-- Time 1: First time step (after first set of actions)
-- Time N: After N time steps
-
-Each state lists the actions taken by each taxi in the format:
-- `do(TaxiID, Action)` where Action is one of:
-  - `move(DeltaRow, DeltaCol)` - direction to move
-  - `pick` - pick up a passenger
-  - `drop` - drop off a passenger  
-  - `wait` - do nothing
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| `building((R+DR),(C+DC))` warnings | Normal informational messages, can be ignored |
-| Telingo timeout (no solution found) | Increase `--imax` parameter or simplify the domain |
-| Visualization freezes | Press 'X' to close the window |
-| Empty solution file | Check that facts file has correct format from encoder |
-
-## References
-
-- [Telingo Documentation](https://telingo.potassco.org/)
-- [Answer Set Programming (ASP)](https://en.wikipedia.org/wiki/Answer_set_programming)
-- [Temporal Logic Programming](https://en.wikipedia.org/wiki/Temporal_logic)
